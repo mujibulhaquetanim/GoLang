@@ -44,5 +44,6 @@ func main() {
 	p1 := NewPerson("Millie bobby brown", 20, []string{}, "")
 
 	p1.haveBirthDay()
-	fmt.Println(p1)
+	//as NewPerson returns a pointer, we can use *p1 to access the value (dereferencing)
+	fmt.Println(*p1)
 }
