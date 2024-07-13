@@ -1,14 +1,15 @@
 package main
 
 import (
-    // "fmt"
-    "github.com/mujibulhaquetanim/gobasic/datastructures"
-    "github.com/mujibulhaquetanim/gobasic/concurrency"
+    "fmt"
+    // "github.com/mujibulhaquetanim/gobasic/datastructures"
+    // "github.com/mujibulhaquetanim/gobasic/concurrency"
 )
 
 func main() {
-    datastructures.StringMethods()
+    // datastructures.StringMethods()
+    // concurrency.ConcurParrel()
 
-    concurrency.ConcurParrel()
+    fmt.Println("to run other file go run dir/<filename>.go")
 
 }
