@@ -1,4 +1,4 @@
-package concurrency
+package main
 
 import (
 	"fmt"
@@ -18,3 +18,9 @@ func ConcurParrel() {
 	}
 	fmt.Println("time taken", time.Since(start))
 }
+
+func main() {
+	ConcurParrel()
+}
+
+// go run -race concurparrel.go
