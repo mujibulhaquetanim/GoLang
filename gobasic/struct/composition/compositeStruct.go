@@ -1,6 +1,3 @@
-//go:build composition
-// +build composition
-
 package main
 
 import (
@@ -22,7 +19,7 @@ type PersonInfo struct {
 
 func main() {
 	// p1 := PersonInfo{"Millie bobby brown", 20, Address{"London", "England", "UK"}}
-	p1 := PersonInfo{} //by deafault the value of string is " ", int is 0, so the output will be: { 0 {  }}
+	p1 := PersonInfo{} //by default the value of string is " ", int is 0, so the output will be: { 0 {  }}
 
 	p1.Name = "Millie bobby brown"
 	p1.Age = 20
