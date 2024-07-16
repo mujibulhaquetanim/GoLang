@@ -17,8 +17,8 @@ func (n Number) Count() int {
 	return counter
 }
 
-func (s String) Count() int {
-	return len(s)
+func (s String) Count() string {
+	return "word count: " + fmt.Sprint(len(s))
 }
 
 func main() {
