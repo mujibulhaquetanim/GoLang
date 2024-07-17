@@ -11,6 +11,10 @@ func main() {
 	router.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello World")
 	}))
+	router.HandleFunc("/first/{id}", func(w http.ResponseWriter, r *http.Request) {
+		id:= r.PathValue("id")
+		w.Write([]byte("received req for id " + id))
+	})
 
 	server := http.Server{
 		Addr:    "127.0.0.1:8080",
