@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("fa")
+	fmt.Println("fanout and fanin example")
 }
