@@ -7,15 +7,19 @@ import "fmt"
 type enum int
 
 const (
-	zero enum = iota //iota is a counter that starts from 0 and increments by 1 for each constant in the enum type
-	one
-	two
+	Received enum = iota //iota is a counter that starts from 0 and increments by 1 for each constant in the enum type
+	Confirmed
+	Prepared
+	Dispatched
+	Shipped
 )
+
+
 
 func changeOrderStatus(status enum) {
 	fmt.Println("order status: ", status)
 }
 
 func main() {
-	changeOrderStatus(one) // 1
+	changeOrderStatus(Confirmed) // 1
 }
