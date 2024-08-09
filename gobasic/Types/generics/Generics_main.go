@@ -6,7 +6,7 @@ func add[T int | float64](a, b T) T {
 	return a + b
 }
 
-//comparable is a type that can be compared using ==, !=, <, >, <=, >= operators
+//comparable is a type that can be compared using ==, !=, <, >, <=, >= operators, without writing int|float64|string explicitly.
 func printSlice[T comparable](items []T) {
 	for _, item := range items {
 		fmt.Println(item)
@@ -31,7 +31,14 @@ func addSubtype[T ~float64](a, b T) T {
 	return a + b
 }
 
+//generic using struct
+type stack[T any] struct {
+	items []T
+}
+
 func main() {
+	lifo:= stack[string]{items: []string{"This is from stack", "middle element", "stack is empty"}}
+	fmt.Println(lifo.items)
 	printSlice([]int{1, 2, 3})
 	printSlice([]string{"a", "b", "c"})
 
