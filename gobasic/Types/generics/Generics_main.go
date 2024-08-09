@@ -5,6 +5,14 @@ import "fmt"
 func add[T int | float64](a, b T) T {
 	return a + b
 }
+
+//comparable is a type that can be compared using ==, !=, <, >, <=, >= operators
+func printSlice[T comparable](items []T) {
+	for _, item := range items {
+		fmt.Println(item)
+	}
+}
+
 func min[T int | float64](a, b T) T {
 	if a < b {
 		return a
@@ -24,6 +32,9 @@ func addSubtype[T ~float64](a, b T) T {
 }
 
 func main() {
+	printSlice([]int{1, 2, 3})
+	printSlice([]string{"a", "b", "c"})
+
 	var subType subtype = 1.5
 
 	fmt.Println(add(1.5, 2))           // 3.5 //without type inference
