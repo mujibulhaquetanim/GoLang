@@ -27,4 +27,12 @@ func main() {
 	//Collect collects values from seq into a new slice and returns it.
 	newSlice := slices.Collect(slices.Values(slice))
 	fmt.Println("newSlice: ", newSlice)
+
+	//AppendSeq appends values from an iterator to an existing slice
+	appendedSlice := slices.AppendSeq(slice, slices.Values(newSlice))
+	fmt.Println("appendedSlice: ", appendedSlice)
+
+	//Sorted collects values from an iterator into new slice then sorts the slice
+	sortedSlice := slices.Sorted(slices.Values(slice))
+	fmt.Println("sortedSlice: ", sortedSlice)
 }
