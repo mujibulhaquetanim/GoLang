@@ -18,4 +18,13 @@ func main() {
 	for x, y := range slices.Backward(slice) {
 		fmt.Println("Returning backward key-value pairs: ", x, y)
 	}
+
+	//values returns a iterator over slice's values.
+	for x := range slices.Values(slice) {
+		fmt.Println("values: ", x)
+	}
+
+	//Collect collects values from seq into a new slice and returns it.
+	newSlice := slices.Collect(slices.Values(slice))
+	fmt.Println("newSlice: ", newSlice)
 }
