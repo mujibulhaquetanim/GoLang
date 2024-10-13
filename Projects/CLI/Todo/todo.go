@@ -34,3 +34,13 @@ func (todos *Todos) validateIndex(index int) error {
 	}
 	return nil
 }
+
+func (todos *Todos) delete(index int) error {
+	t:= *todos
+	if err := todos.validateIndex(index); err != nil {
+		return err
+	}
+	t = append(t[:index], t[index+1:]...)
+	*todos = t
+	return nil
+}
