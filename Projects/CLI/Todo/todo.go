@@ -9,8 +9,8 @@ import (
 type Todo struct {
 	Title       string
 	Completed   bool
-	CreatedAt   string
-	CompletedAt string
+	CreatedAt   time.Time
+	CompletedAt *time.Time
 }
 
 type Todos []Todo
@@ -19,7 +19,7 @@ func (todos *Todos) add(title string) {
 	todo := Todo{
 		Title:       title,
 		Completed:   false,
-		CreatedAt:   time.Now().String(),
+		CreatedAt:   time.Now(),
 		CompletedAt: nil,
 	}
 
@@ -28,7 +28,7 @@ func (todos *Todos) add(title string) {
 
 func (todos *Todos) validateIndex(index int) error {
 	if index < 0 || index >= len(*todos) {
-		err:= errors.New("invalid index")
+		err := errors.New("invalid index")
 		fmt.Println(err.Error())
 		return err
 	}
@@ -36,7 +36,7 @@ func (todos *Todos) validateIndex(index int) error {
 }
 
 func (todos *Todos) delete(index int) error {
-	t:= *todos
+	t := *todos
 	if err := todos.validateIndex(index); err != nil {
 		return err
 	}
