@@ -44,3 +44,31 @@ func (todos *Todos) delete(index int) error {
 	*todos = t
 	return nil
 }
+
+func (todos *Todos) toggle(index int) error {
+	t := *todos
+
+	if err := t.validateIndex(index); err != nil {
+		return err
+	}
+
+	isCompleted := t[index].Completed
+	if !isCompleted {
+		completionTime := time.Now()
+		t[index].CompletedAt = &completionTime
+	}
+
+	t[index].Completed = !isCompleted
+	return nil
+}
+
+func (todos *Todos) edit(index int, title string) error {
+	t := *todos
+
+	if err := t.validateIndex(index); err != nil {
+		return err
+	}
+
+	t[index].Title = title
+	return nil
+}
