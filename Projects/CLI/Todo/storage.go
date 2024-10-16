@@ -16,7 +16,7 @@ func NewStorage[T any](fileName string) *Storage[T] {
 	}
 }
 
-func (s *Storage[T]) save(data T) error {
+func (s *Storage[T]) Save(data T) error {
 	//convert data to json, "\t" for indentation & "" used for prefix for each line.
 	fileData, err := json.MarshalIndent(data, "", "\t")
 
@@ -27,7 +27,7 @@ func (s *Storage[T]) save(data T) error {
 	return os.WriteFile(s.FileName, fileData, 0644)
 }
 
-func (s *Storage[T]) load(data *T) error {
+func (s *Storage[T]) Load(data *T) error {
 	fileData, err := os.ReadFile(s.FileName)
 
 	if err != nil {
