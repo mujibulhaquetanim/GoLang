@@ -26,3 +26,15 @@ func (s *Storage[T]) save(data T) error {
 	//0644 = read and write permission for owner only & read permission for others
 	return os.WriteFile(s.FileName, fileData, 0644)
 }
+
+func (s *Storage[T]) load(data *T) error {
+	fileData, err := os.ReadFile(s.FileName)
+
+	if err != nil {
+		return err
+	}
+	//convert json to data & store in data as data is a pointer of T
+	//The json.Unmarshal function specifically expects a []byte as its first argument.
+	//Using []byte allows for more efficient memory handling in some cases, especially when dealing with large amounts of data.
+	return json.Unmarshal(fileData, data)
+}
