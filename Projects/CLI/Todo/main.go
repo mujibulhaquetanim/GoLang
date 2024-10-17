@@ -7,12 +7,15 @@ func main() {
 	//passed a pointer of type Todos to Load
 	storage.Load(&todos)
 
-	// todos.add("Buy milk")
-	// todos.add("Buy eggs")
+	cmdFlags := NewCmdFlags()
+	cmdFlags.Execute(&todos)
 
-	//toggles the todo at index 0 which will set it to completed
-	// todos.toggle(0)
-	todos.print()
 
 	storage.Save(todos)
 }
+
+// todos.print()
+	// todos.add("Buy milk")
+	// todos.add("Buy eggs")
+	//toggles the todo at index 0 which will set it to completed
+	// todos.toggle(0)
