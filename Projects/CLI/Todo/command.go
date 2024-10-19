@@ -18,7 +18,7 @@ type CmdFlags struct {
 
 func NewCmdFlags() *CmdFlags {
 	cf := CmdFlags{}
-	
+
 	flag.StringVar(&cf.Add, "add", "", "Add a new Todo specify title")
 	flag.StringVar(&cf.Edit, "edit", "", "Edit a new Todo by index & specify a new title. id: new_title")
 	flag.IntVar(&cf.Delete, "delete", -1, "Specify a todo by index to delete")
@@ -26,6 +26,7 @@ func NewCmdFlags() *CmdFlags {
 	flag.BoolVar(&cf.List, "list", false, "List All todos")
 
 	flag.Parse()
+	fmt.Print("Command: ", cf, "\n")
 	return &cf
 }
 
@@ -36,7 +37,6 @@ func (cf *CmdFlags) Execute(todos *Todos) {
 
 	case cf.Add != "":
 		todos.add(cf.Add)
-		todos.print()
 
 	case cf.Edit != "":
 		parts := strings.SplitN(cf.Edit, ":", 2)
@@ -51,17 +51,14 @@ func (cf *CmdFlags) Execute(todos *Todos) {
 			os.Exit(1)
 		}
 		todos.edit(index, parts[1])
-		todos.print()
 
 	case cf.Toggle != -1:
 		todos.toggle(cf.Toggle)
-		todos.print()
 
 	case cf.Delete != -1:
 		todos.delete(cf.Delete)
-		todos.print()
 
 	default:
-		fmt.Println("Invalid Command")
+		fmt.Println("Oops! Invalid Command. Use `./todo-cli -h` for Help")
 	}
 }

@@ -28,25 +28,33 @@ func (todos *Todos) add(title string) {
 	}
 
 	*todos = append(*todos, todo)
-	fmt.Println("Todo added successfully")
+	fmt.Printf("Todo %q added successfully at the index of %d\n\n", title, len(*todos)-1)
+	fmt.Println("Your new Todos are: ")
+	todos.print()
 }
 
 func (todos *Todos) validateIndex(index int) error {
 	if index < 0 || index >= len(*todos) {
 		err := errors.New("invalid index")
+		fmt.Println(err)
 		return err
 	}
 	return nil
 }
 
 func (todos *Todos) delete(index int) error {
-	t := *todos
+	t := *todos // dereferencing the pointer to get the value of the pointer. basically it copies the value of the pointer to a new variable
 	if err := todos.validateIndex(index); err != nil {
 		return err
 	}
-	t = append(t[:index], t[index+1:]...)
+
+	fmt.Printf("Todo: %q deleted successfully at the index of %d\n\n", t[index].Title, index)
+
+	t = append(t[:index], t[index+1:]...) // removes the element from the slice and returns the new slice.
 	*todos = t
-	fmt.Println("Todo deleted successfully")
+
+	fmt.Println("Your new Todos are: ")
+	todos.print()
 
 	return nil
 }
@@ -65,7 +73,10 @@ func (todos *Todos) toggle(index int) error {
 	}
 
 	t[index].Completed = !isCompleted
-	fmt.Println("Todo updated successfully")
+	fmt.Println("Your new state is", t[index].Completed, "for the index of", index)
+	fmt.Printf("\nTodo %q updated successfully at the index of %d\n\n", t[index].Title, index)
+	fmt.Println("Your new Todos are: ")
+	todos.print()
 
 	return nil
 }
@@ -78,7 +89,9 @@ func (todos *Todos) edit(index int, title string) error {
 	}
 
 	t[index].Title = title
-	fmt.Println("Todo updated successfully")
+	fmt.Printf("Todo %q edited successfully at the index of %d\n\n", title, index)
+	fmt.Println("Your new Todos are: ")
+	todos.print()
 
 	return nil
 }
