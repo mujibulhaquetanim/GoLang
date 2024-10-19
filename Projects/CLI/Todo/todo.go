@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"strconv"
 	"time"
@@ -27,6 +28,7 @@ func (todos *Todos) add(title string) {
 	}
 
 	*todos = append(*todos, todo)
+	fmt.Println("Todo added successfully")
 }
 
 func (todos *Todos) validateIndex(index int) error {
@@ -44,6 +46,8 @@ func (todos *Todos) delete(index int) error {
 	}
 	t = append(t[:index], t[index+1:]...)
 	*todos = t
+	fmt.Println("Todo deleted successfully")
+
 	return nil
 }
 
@@ -61,6 +65,8 @@ func (todos *Todos) toggle(index int) error {
 	}
 
 	t[index].Completed = !isCompleted
+	fmt.Println("Todo updated successfully")
+
 	return nil
 }
 
@@ -72,6 +78,8 @@ func (todos *Todos) edit(index int, title string) error {
 	}
 
 	t[index].Title = title
+	fmt.Println("Todo updated successfully")
+
 	return nil
 }
 
