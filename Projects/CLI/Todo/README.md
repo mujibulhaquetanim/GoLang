@@ -31,7 +31,7 @@ This is a Command-Line Interface (CLI) application for managing your to-dos, bui
     ./todo-cli -delete 'indexNumber'  #to delete a todo
 ```
 
-**Note:** Get the index number from the todo table. If the executable file doesn't create any todo.json file, it means you have not given folder access to it, to enable it, goto to `Controlled folder access`. For more help, Please use Youtube to enable it.
+**Note:** Get the index number from the todo table. If the executable file doesn't create any todo.json file, it means you have not given folder access to it, to enable it, goto the `Controlled folder access`. For more help, Please use Youtube/google to enable it.
 
 <details>
     <summary>Image Examples:</summary>
