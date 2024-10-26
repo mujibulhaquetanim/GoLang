@@ -2,14 +2,26 @@
 
 Welcome to the GoLang Projects Repository! This repository contains various Go projects and examples.
 
-## Backend Project
+## Backend Projects
 
-Detailed documentation about your backend project.
+This projects included following techstack:
+
+- [x] Backend with GoFiber
+- [x] Backend with Standard Packages (net/http)
+- [ ] SQLite with sqlite3
+- [ ] DB with Prisma
+- [ ] DB with Drizzle
+- [ ] DB with Mongoose
+- [ ] DB with TypeORM
 
 ## CLI Project
 
-Detailed documentation about your CLI project.
+- [x] Todo Management
 
 ## Go Basics
 
-A collection of basic Go programs and examples.
+For all the basics to advanced concepts of Golang, goto /gobasic directory.
+
+## Std Libs
+
+This directory contains frequently used std libs of golang such as context, reflection, net etc.
