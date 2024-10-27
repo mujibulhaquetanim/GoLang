@@ -4,15 +4,18 @@ Welcome to the GoLang Projects Repository! This repository contains various Go p
 
 ## Backend Projects
 
-This projects included following techstack:
+This project included the following tech stack:
 
 - [x] Backend with GoFiber
 - [x] Backend with Standard Packages (net/http)
-- [ ] SQLite with sqlite3
-- [ ] DB with Prisma
-- [ ] DB with Drizzle
-- [ ] DB with Mongoose
-- [ ] DB with TypeORM
+- [ ] SQL DBs/ SQLite with sqlite3
+- [ ] MongoDB
+- [ ] JWT auth/ OAuth
+- [ ] Redis
+- [ ] Message Queues (RabbitMQ)
+- [ ] GRPC
+- [ ] GraphQL
+- [ ] MicroServices
 
 ## CLI Project
 
@@ -24,4 +27,4 @@ For all the basics to advanced concepts of Golang, goto /gobasic directory.
 
 ## Std Libs
 
-This directory contains frequently used std libs of golang such as context, reflection, net etc.
+This directory contains frequently used std libs of Golang such as context, reflection, net, etc.
