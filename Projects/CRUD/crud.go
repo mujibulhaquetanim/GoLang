@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 
 	// "io"
 	"net/http"
@@ -15,9 +16,7 @@ type Todo struct {
 	Completed bool   `json:"completed"`
 }
 
-func main() {
-	fmt.Println("Welcome to CRUD using net/http")
-
+func performGetRequest() {
 	res, err := http.Get("http://jsonplaceholder.typicode.com/todos/5")
 	if err != nil {
 		fmt.Println("Error fetching data", err)
@@ -46,4 +45,46 @@ func main() {
 
 	// fmt.Println(string(data))
 
+}
+
+func performPostRequest() {
+	todo := Todo{
+		UserId:    1,
+		Id:        1,
+		Title:     "CRUD using net/http",
+		Completed: true,
+	}
+
+	jsonData, err := json.Marshal(todo)
+	if err != nil {
+		fmt.Println("Error marshalling todo to JSON", err)
+		return
+	}
+
+	// Convert byte array to string
+	jsonString := string(jsonData)
+
+	// string.NewReader is used to convert string to io.Reader interface.
+	jsonReader := strings.NewReader(jsonString)
+
+	res, err := http.Post("http://jsonplaceholder.typicode.com/todos", "application/json", jsonReader)
+
+	if err != nil {
+		fmt.Println("Error posting data", err)
+		return
+	}
+	defer res.Body.Close()
+
+	if res.StatusCode != http.StatusCreated {
+		fmt.Println("Error response status code", res.StatusCode)
+		return
+	}
+
+	fmt.Println("Data posted successfully", res.StatusCode)
+}
+
+func main() {
+	fmt.Println("Welcome to CRUD using net/http")
+	// performGetRequest()
+	performPostRequest()
 }
