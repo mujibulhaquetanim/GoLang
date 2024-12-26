@@ -1,9 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
-	"strings"
 
 	// "io"
 	"net/http"
@@ -62,10 +62,11 @@ func performPostRequest() {
 	}
 
 	// Convert byte array to string
-	jsonString := string(jsonData)
+	// jsonString := string(jsonData)
 
 	// string.NewReader is used to convert string to io.Reader interface.
-	jsonReader := strings.NewReader(jsonString)
+	// jsonReader := strings.NewReader(jsonString)
+	jsonReader := bytes.NewReader(jsonData)
 
 	res, err := http.Post("http://jsonplaceholder.typicode.com/todos", "application/json", jsonReader)
 
