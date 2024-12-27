@@ -94,9 +94,9 @@ func performPostRequest() {
 
 func perforPutRequest() {
 	updatedTodo := Todo{
-		UserId: 2,
-		Id: 2,
-		Title: "CRUD using net/http version 2 will be applied in another file",
+		UserId:    2,
+		Id:        2,
+		Title:     "CRUD using net/http version 2 will be applied in another file",
 		Completed: false,
 	}
 
@@ -130,7 +130,7 @@ func perforPutRequest() {
 	}
 	defer res.Body.Close()
 
-	resByteData,err := io.ReadAll(res.Body)
+	resByteData, err := io.ReadAll(res.Body)
 	if err != nil {
 		fmt.Println("Error reading bytes from response", err)
 		return
@@ -140,9 +140,32 @@ func perforPutRequest() {
 	fmt.Println("Data updated successfully", string(resByteData))
 }
 
+func performDeleteRequest() {
+	req, err := http.NewRequest(http.MethodDelete, "http://jsonplaceholder.typicode.com/todos/1", nil)
+	if err != nil {
+		fmt.Println("Error creating Delete request", err)
+		return
+	}
+
+	client := http.Client{}
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error deleting data", err)
+		return
+	}
+	defer res.Body.Close()
+
+	if res.StatusCode != http.StatusOK {
+		fmt.Println("Error response status code", res.StatusCode)
+		return
+	}
+	fmt.Println("Data deleted successfully", res.StatusCode)
+}
+
 func main() {
 	fmt.Println("Welcome to CRUD using net/http")
 	// performGetRequest()
 	// performPostRequest()
-	perforPutRequest()
+	// perforPutRequest()
+	performDeleteRequest()
 }
