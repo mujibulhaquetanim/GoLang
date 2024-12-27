@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 
 	// "io"
 	"net/http"
@@ -80,8 +81,15 @@ func performPostRequest() {
 		fmt.Println("Error response status code", res.StatusCode)
 		return
 	}
-
 	fmt.Println("Data posted successfully", res.StatusCode)
+
+	// to read the response body
+	data, err := io.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println("Error reading bytes from response", err)
+		return
+	}
+	fmt.Println(string(data))
 }
 
 func main() {
