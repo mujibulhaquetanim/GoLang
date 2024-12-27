@@ -92,8 +92,57 @@ func performPostRequest() {
 	fmt.Println(string(data))
 }
 
+func perforPutRequest() {
+	updatedTodo := Todo{
+		UserId: 2,
+		Id: 2,
+		Title: "CRUD using net/http version 2 will be applied in another file",
+		Completed: false,
+	}
+
+	jsonData, err := json.Marshal(updatedTodo)
+	if err != nil {
+		fmt.Println("Error marshalling update todo to JSON", err)
+		return
+	}
+
+	// converting byte slice to io.Reader interface as http.NewRequest accepts io.Reader interface
+	jsonReader := bytes.NewReader(jsonData)
+	// jsonReader := strings.NewReader(string(jsonData))
+
+	// 'Put' can be used instead of http.MethodPut
+	req, err := http.NewRequest(http.MethodPut, "http://jsonplaceholder.typicode.com/todos/1", jsonReader)
+	if err != nil {
+		fmt.Println("Error creating PUT request", err)
+		return
+	}
+
+	// setting the header for the request
+	req.Header.Set("Content-Type", "application/json")
+
+	// creating a client
+	client := http.Client{}
+	// sending the request and getting the response back
+	res, err := client.Do((req))
+	if err != nil {
+		fmt.Println("Error updating data", err)
+		return
+	}
+	defer res.Body.Close()
+
+	resByteData,err := io.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println("Error reading bytes from response", err)
+		return
+	}
+
+	fmt.Println("Response status code", res.StatusCode)
+	fmt.Println("Data updated successfully", string(resByteData))
+}
+
 func main() {
 	fmt.Println("Welcome to CRUD using net/http")
 	// performGetRequest()
-	performPostRequest()
+	// performPostRequest()
+	perforPutRequest()
 }
